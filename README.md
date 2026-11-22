@@ -24,3 +24,48 @@ CSV 和 JSON Lines 均为 UTF-8。SQLite 来源库只读，原始标识保持文
 ```sh
 python3 -m unittest discover -s tests -v
 ```
+
+## 媒体数据仓（`mediaware`）
+
+来源资料通过只依赖标准库的 `mediaware` 包接成同一套对账模型，全程不改动
+`data/` 中的原始文件，SQLite 仍以只读方式打开。
+
+- `sources.py`：按原格式加载六份资料，标识保持文本，时间解析为带时区时间。
+- `models.py`：素材、构成行、原件使用段、授权、影院组合、场次与回执模型。
+- `composition.py`：把剪辑构成递归展开到原件，声轨、画面、字幕分别登记；
+  支持多层合成与 `part=all` 整条引用，坐标按 `parent_in`/`child_in` 换算，
+  只登记实际使用到的原件片段（如 `F-44@3` 只用 `A-117` 的 10–90 秒）。
+- `rights.py`：按到达批次解析合同（同合同号取最高修订，`withdraw` 退出，
+  其他合同独立），再按放映地、整场时间窗与素材片段判定。时间区间半开，
+  有效期空档按时间切片暴露，不用首尾日期抹平；`deny` 优先于一般准许并
+  附禁用原因，没有合同的部分判为缺证（`missing`），与禁用（`denied`）区分。
+- `eligibility.py`：对每个候选版本同时核对逐段权利与影院公布的声音轨+字幕
+  组合，任一不过即不可交接，状态为 `eligible`/`missing`/`denied`/
+  `incompatible`/`unknown`。
+- `warehouse.py`：仓库门面与场次状态机，`handoffs.jsonl` 的回执按发行单号
+  与轮次对应；影院确认绑定具体放映版本，后到文件不能凭同名替换。
+- `cli.py` / `__main__.py`：发行部命令行，支持 `--as-of 批次` 复现历史时点。
+
+### 场次处置语义
+
+- `play`：未确认场有合格包可发包；或已确认包在当前批次仍可照常播放。
+- `reconfirm`：已确认包失效，但存在权利齐备且兼容的备选；只发重新确认
+  通知，绝不静默换包，影院迟到的旧确认不改变该结论。
+- `suspend`：已确认包失效且没有合格备选（缺证、禁用或兼容不过），必须暂停。
+- `history`：已放映场次冻结当时的确认与所据合同版本；之后到达的证据只
+  生成 `trace` 追查留痕（仅列与该包构成相关的合同），已发生记录保持原义。
+
+### 命令行
+
+```sh
+python3 -m mediaware shows                       # 全部场次结论
+python3 -m mediaware query --city 临泉 --date 2027-03-14
+python3 -m mediaware review                      # 待复核场次与追查
+python3 -m mediaware grants                      # 当前生效合同（撤销者已退出）
+python3 -m mediaware manifest EV2                # 影院离线交接清单
+python3 -m mediaware trace EV1                   # 新证据对既往场次的追查
+python3 -m mediaware shows --as-of 4             # 复现第 4 批次时点的结论
+```
+
+离线交接清单指向确切素材键、原件时间坐标、准用城市与时间窗、证据合同号，
+并把换包/停播通知与先前确认的包号、轮次对应起来。
