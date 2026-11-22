@@ -1,0 +1,11 @@
+asset,edition,kind,format,seconds
+V-202,1,picture,h264,80
+A-410,1,audio,stereo,80
+A-681,1,audio,stereo,80
+A-117,1,audio,surround,90
+S-31,2,caption,srt-zh,80
+F-44,1,mix,stereo+srt-zh,80
+F-44,2,mix,stereo+srt-zh,80
+F-44,3,mix,surround+srt-zh,80
+W-07,1,programme,stereo+srt-zh,100
+V-211,1,picture,h264,20

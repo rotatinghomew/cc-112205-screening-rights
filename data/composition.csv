@@ -1,0 +1,12 @@
+parent,parent_edition,child,child_edition,part,parent_in,child_in,length
+F-44,1,V-202,1,picture,0,0,80
+F-44,1,A-410,1,audio,0,0,80
+F-44,1,S-31,2,caption,0,0,80
+F-44,2,V-202,1,picture,0,0,80
+F-44,2,A-681,1,audio,0,0,80
+F-44,2,S-31,2,caption,0,0,80
+F-44,3,A-117,1,audio,0,10,80
+F-44,3,V-202,1,picture,0,0,80
+F-44,3,S-31,2,caption,0,0,80
+W-07,1,V-211,1,picture,0,0,20
+W-07,1,F-44,1,all,20,0,80

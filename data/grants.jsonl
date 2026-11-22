@@ -1,0 +1,8 @@
+{"grant":"G1","revision":"1","city":"*","asset":"V-202","edition":"1","from_sec":"0","to_sec":"80","opens":"2027-02-01T00:00:00+08:00","closes":"2027-04-01T00:00:00+08:00","media":"screen","state":"allow","received":"1"}
+{"grant":"G2","revision":"1","city":"*","asset":"S-31","edition":"2","from_sec":"0","to_sec":"80","opens":"2027-02-01T00:00:00+08:00","closes":"2027-04-01T00:00:00+08:00","media":"screen","state":"allow","received":"1"}
+{"grant":"G3","revision":"1","city":"*","asset":"A-410","edition":"1","from_sec":"0","to_sec":"80","opens":"2027-03-01T00:00:00+08:00","closes":"2027-03-21T00:00:00+08:00","media":"screen","state":"allow","received":"1"}
+{"grant":"G3","revision":"2","city":"*","asset":"A-410","edition":"1","from_sec":"0","to_sec":"80","opens":"2027-03-01T00:00:00+08:00","closes":"2027-03-21T00:00:00+08:00","media":"screen","state":"withdraw","received":"5"}
+{"grant":"G4","revision":"1","city":"临泉","asset":"A-681","edition":"1","from_sec":"0","to_sec":"80","opens":"2027-03-04T00:00:00+08:00","closes":"2027-03-16T00:00:00+08:00","media":"screen","state":"allow","received":"2"}
+{"grant":"G5","revision":"1","city":"云桥","asset":"A-117","edition":"1","from_sec":"10","to_sec":"90","opens":"2027-03-01T00:00:00+08:00","closes":"2027-03-21T00:00:00+08:00","media":"screen","state":"allow","received":"2"}
+{"grant":"G6","revision":"1","city":"*","asset":"V-211","edition":"1","from_sec":"0","to_sec":"20","opens":"2027-03-01T00:00:00+08:00","closes":"2027-03-21T00:00:00+08:00","media":"screen","state":"allow","received":"2"}
+{"grant":"G7","revision":"1","city":"临泉","asset":"A-681","edition":"1","from_sec":"20","to_sec":"40","opens":"2027-03-14T18:00:20+08:00","closes":"2027-03-14T18:00:40+08:00","media":"screen","state":"deny","received":"6"}
